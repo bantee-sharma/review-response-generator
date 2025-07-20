@@ -7,3 +7,5 @@ google-generativeai
 python-dotenv
 pydantic
 langgraph
+grandalf
+flask
