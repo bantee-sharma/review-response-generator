@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Review Analyzer</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 40px auto;
+            max-width: 800px;
+            background: #f4f4f4;
+            padding: 30px;
+        }
+        textarea, input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+        }
+        .result {
+            background: #fff;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧠 AI Review Analyzer</h1>
+    <form method="POST">
+        <label for="review">Paste a customer review:</label>
+        <textarea name="review" rows="6" required>{{ review or '' }}</textarea>
+        <input type="submit" value="Analyze">
+    </form>
+
+    {% if sentiment %}
+    <div class="result">
+        <h2>🔍 Analysis Result</h2>
+        <p><strong>Sentiment:</strong> {{ sentiment }}</p>
+
+        {% if diagnosis %}
+        <p><strong>Issue Type:</strong> {{ diagnosis.issue_type }}</p>
+        <p><strong>Tone:</strong> {{ diagnosis.tone }}</p>
+        <p><strong>Urgency:</strong> {{ diagnosis.urgency }}</p>
+        {% endif %}
+
+        <h2>📝 Suggested Response</h2>
+        <p>{{ response }}</p>
+    </div>
+    {% endif %}
+</body>
+</html>
