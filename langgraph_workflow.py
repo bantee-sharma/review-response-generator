@@ -54,7 +54,7 @@ def run_diagnosis(state: ReviewState):
 
     prompt = f"""Diagnose this negative review:\n\n{state['review']}\nReturn issue_type, tone, and urgency."""
     output = struc_llm2.invoke(prompt)
-    return {"response":output.model_dump}
+    return {"diagnosis":output.model_dump}
 
 def negative_response(state: ReviewState):
 
@@ -83,7 +83,7 @@ graph.add_edge("run_diagnosis", "negative_response")
 graph.add_edge("negative_response", END)
 
 workflow = graph.compile()
-rev = {"rev":"product is not good"}
+rev = {"review":"product is not good"}
 print(workflow.invoke(rev))
 
 # def process_review(review: str):
