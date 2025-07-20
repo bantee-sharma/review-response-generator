@@ -12,4 +12,29 @@ class SentimentSchema(BaseModel):
     sentiment: Literal["positive","negative"]
 
 struc_llm = llm.with_structured_output(SentimentSchema)
-struc_llm.invoke("product is very good")
+
+class ReviewState(TypedDict):
+
+    review: str
+    sentiment: Literal["positive","negative"]
+    diagnosis: dict
+    response: str
+
+def find_sentiment(state: ReviewState):
+
+    prompt = f"Give the sentiment of the following review: {state["review"]}"
+    output = struc_llm.invoke(prompt)
+    return {"response":output.sentiment}
+
+graph = StateGraph(ReviewState)
+
+graph.add_node("find_sentiment",find_sentiment)
+
+graph.add_edge(START,"find_sentiment")
+graph.add_edge("find_sentiment",END)
+
+workflow = graph.compile()
+
+rev = {"review":"procuct is good"}
+print(workflow.invoke(rev))
+print(workflow)
