@@ -2,7 +2,7 @@ langchain
 langchain-core
 langchain-community
 
-lanhchain-google-geneai
+langchain-google-genai
 google-generativeai
 python-dotenv
 
