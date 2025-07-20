@@ -54,16 +54,22 @@ def run_diagnosis(state: ReviewState):
 
     prompt = f"""Diagnose this negative review:\n\n{state['review']}\nReturn issue_type, tone, and urgency."""
     output = struc_llm2.invoke(prompt)
-    return {"diagnosis":output.model_dump}
+    return {"diagnosis":output.model_dump()}
 
 def negative_response(state: ReviewState):
-
     diagnosis = state["diagnosis"]
 
-    prompt = f"""You are a support Assitant.
-    the user had a {diagnosis["issue_type"]} issue, sounded {diagnosis["tone"]}, and marked up as {diagnosis["urgency"]}.
-    Write an empathetic, helpful resolution message."""
+    prompt = f"""
+    A customer left a negative product review. Based on the diagnosis:
+    - Issue Type: {diagnosis['issue_type']}
+    - Tone: {diagnosis['tone']}
+    - Urgency: {diagnosis['urgency']}
 
+    Write a short, **2-3 line empathetic message** as a seller on Amazon/Flipkart. Apologize briefly, acknowledge the issue, and invite the customer to connect with us for resolution.
+
+    End the message with: <a href="https://www.linkedin.com/in/bantee-sharma-9a970b26b/" target="_blank">Click here to share details</a>
+    Keep it friendly, professional, and concise.
+    """
     output = llm.invoke(prompt).content
     return {"response": output}
 
@@ -83,10 +89,9 @@ graph.add_edge("run_diagnosis", "negative_response")
 graph.add_edge("negative_response", END)
 
 workflow = graph.compile()
-rev = {"review":"product is not good"}
-print(workflow.invoke(rev))
 
-# def process_review(review: str):
-#     state = {"review": review}
-#     result = workflow.invoke(state)
-#     return result
+
+def process_review(review: str):
+    state = {"review": review}
+    result = workflow.invoke(state)
+    return result
