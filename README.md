@@ -35,6 +35,10 @@ This project uses **LangGraph**, **OpenAI GPT-4**, and **structured prompting** 
 
 ---
 
+### 🧭 LangGraph Workflow Diagram
+
+![LangGraph Flowchart](images/langgraph-workflow.png)
+
 ## 🚀 Quick Start
 
 1. **Clone the repo**
