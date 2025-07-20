@@ -31,7 +31,7 @@ def find_sentiment(state: ReviewState):
 
     prompt = f"Give the sentiment of the following review: {state["review"]}"
     output = struc_llm.invoke(prompt).sentiment
-    return {"response":output}
+    return {"sentiment":output}
 
 def cheack_point(state: ReviewState) -> Literal["positive_response","run_diagnosis"]:
     if state["sentiment"] == "positive":
