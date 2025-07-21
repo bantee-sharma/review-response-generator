@@ -1,4 +1,4 @@
-# 🛍️ Review Response Generator using LangGraph and OpenAI
+# 🛍️ Review Response Generator using LangGraph
 
 This project uses **LangGraph**, **OpenAI GPT-4**, and **structured prompting** to generate empathetic, human-like responses to customer reviews — especially for e-commerce platforms like Amazon or Flipkart.
 
