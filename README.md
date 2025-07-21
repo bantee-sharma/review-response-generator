@@ -1,6 +1,6 @@
 # 🛍️ Review Response Generator using LangGraph
 
-This project uses **LangGraph**, ****, and **structured prompting** to generate empathetic, human-like responses to customer reviews — especially for e-commerce platforms like Amazon or Flipkart.
+This project uses **LangGraph**, **google-gemini**, and **structured prompting** to generate empathetic, human-like responses to customer reviews — especially for e-commerce platforms like Amazon or Flipkart.
 
 ---
 
