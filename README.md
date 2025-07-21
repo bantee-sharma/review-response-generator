@@ -43,7 +43,7 @@ This project uses **LangGraph**, **OpenAI GPT-4**, and **structured prompting** 
 
 1. **Clone the repo**
    ```bash
-   git clone https://github.com/your-username/review-response-generator.git
+   git clone https://github.com/bantee-username/review-response-generator.git
    cd review-response-generator
 
 
